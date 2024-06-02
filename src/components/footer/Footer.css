@@ -1,0 +1,26 @@
+.footer-container {
+    background-color: black;
+    color: white;
+    padding: 20px 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .footer-icon {
+    margin: 0 10px; /* Espacio entre los iconos */
+    font-size: 24px; /* Tamaño de los iconos */
+  }
+  
+  
+  .footer-icons a {
+    color: white;
+    margin-right: 10px;
+  }
+
+  .footer-icon :hover{
+    color: rgb(134, 21, 183);
+  }
+  
+  .footer-text p {
+    margin: 0;
+  }

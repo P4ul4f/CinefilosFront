@@ -1,0 +1,18 @@
+.custom-dropdown .dropdown-menu {
+    background-color: black;
+}
+
+
+.custom-dropdown .dropdown-menu .custom-item-dropdown {
+    color: white;
+}
+
+.custom-dropdown .dropdown-menu .custom-item-dropdown:hover {
+    color: rgb(134, 21, 183);
+    background-color: black;
+}
+
+.custom-header{
+    margin: 0;
+    padding: 0;
+}

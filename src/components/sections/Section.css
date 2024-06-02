@@ -1,0 +1,113 @@
+.section-container {
+    background-color: black;
+    padding: 50px 0;
+    margin-top: 50px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+  
+  .icon-container{
+    display: flex;
+    justify-content: s;
+    gap: 30px;
+  }
+
+  .icon-item{
+    align-items: center;
+  }
+
+  .section-icon {
+    color: rgb(134, 21, 183);
+    font-size: 3rem;
+    margin-bottom: 10px;
+
+  }
+  
+  .section-text {
+    color: white;
+    font-size: 1rem;
+  }
+
+ /* PREMIERE */
+ .premiere-container {
+    padding: 50px 20px;
+  }
+  
+  .premiere-posters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .premiere-poster img {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+  }
+
+  /* FAVORITE */
+  .favorite-container {
+    padding: 20px;
+  }
+  
+  .favorite-posters-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Ajusta el espacio entre las columnas */
+  }
+  
+  .favorite-poster {
+    flex: 0 0 calc(20% - 20px); /* Ajusta el ancho de cada póster */
+    margin-bottom: 20px; /* Espacio entre los pósters */
+  }
+  
+  .favorite-poster img {
+    width: 100%;
+    cursor: pointer;
+  }
+
+
+/* MARATON */
+.marathon-container {
+  padding: 20px;
+}
+
+.saga-container {
+  margin-bottom: 20px;
+}
+
+.saga-container h4 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.movies-container {
+  display: flex;
+  overflow-x: auto; /* Agrega scroll horizontal si hay demasiadas películas */
+}
+
+.movie-item {
+  flex: 0 0 auto; /* Permitir que las películas se ajusten automáticamente al contenido */
+  margin-right: 20px; /* Espacio entre las películas */
+  text-align: center;
+}
+
+.movie-item:last-child {
+  margin-right: 0; /* Eliminar el margen derecho de la última película */
+}
+
+.movie-item img {
+  width: 200px; /* Ancho fijo para las imágenes */
+  height: auto; /* Altura automática */
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.movie-item p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+
+  
