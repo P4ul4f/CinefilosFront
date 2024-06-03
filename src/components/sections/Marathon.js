@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Section.css'; // Asegúrate de crear un archivo CSS con este nombre y contenido
 
 const Marathon = () => {
   const [sagas, setSagas] = useState([]);
@@ -7,69 +8,64 @@ const Marathon = () => {
 
   useEffect(() => {
     const fetchSagas = async () => {
-      try {
-        const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc`);
-        const movies = response.data.results;
+      const sagaNames = [
+        'Harry Potter',
+        'Star Wars',
+        'The Lord of the Rings',
+        'The Matrix',
+        'Pirates of the Caribbean'
+      ];
 
-        // Objeto para almacenar las sagas
-        const sagasMap = {};
+      const sagasArray = await Promise.all(
+        sagaNames.map(async (sagaName) => {
+          const response = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${sagaName}`);
+          // Filtrar solo las películas y limitar a 8 resultados
+          const filteredMovies = response.data.results.filter(movie => (
+            (!movie.poster_path || movie.poster_path !== null) &&  // Filtrar películas sin poster
+            (!movie.adult)  
+          ));
+          return {
+            sagaName,
+            movies: filteredMovies
+          };
+        })
+      );
 
-        // Agrupar películas por sagas basadas en el título
-        movies.forEach(movie => {
-          const sagaName = getMovieSaga(movie.title);
-          if (!sagasMap[sagaName]) {
-            sagasMap[sagaName] = [];
-          }
-          sagasMap[sagaName].push(movie);
-        });
-
-        // Convertir el objeto sagasMap a un array de sagas
-        const sagasArray = Object.entries(sagasMap).map(([sagaName, movies]) => ({
-          sagaName,
-          movies
-        }));
-
-        setSagas(sagasArray);
-      } catch (error) {
-        console.error('Error al obtener las sagas:', error);
-        setSagas([]);
-      }
+      setSagas(sagasArray);
     };
 
     fetchSagas();
   }, []);
 
-  const getMovieSaga = (genres) => {
-    // Verificamos si genres es un array y si tiene al menos un género
-    if (Array.isArray(genres) && genres.length > 0) {
-      // Filtramos los géneros para obtener solo aquellos que nos interesan
-      const relevantGenres = genres.filter(genre => {
-        const relevantGenreIds = [12, 14]; // IDs de los géneros relevantes
-        return relevantGenreIds.includes(genre.id);
-      });
-  
-      // Si hay géneros relevantes, devolvemos el nombre del primer género
-      if (relevantGenres.length > 0) {
-        return relevantGenres[0].name;
-      }
+  const scroll = (direction, container) => {
+    const scrollAmount = 300;
+    if (direction === 'left') {
+      container.scrollLeft -= scrollAmount;
+    } else {
+      container.scrollLeft += scrollAmount;
     }
-  
-    // Si no se encuentra ningún género relevante o genres no es un array, devolvemos "Otras Películas"
-    return "Otras Películas";
   };
 
   return (
-    <div className="marathon-container">
+    <div className="marathon-container" style={{paddingTop:'50px'}}>
       {sagas.map((saga, index) => (
         <div key={index} className="saga-container">
           <h3>{saga.sagaName}</h3>
-          <div className="movies-container">
-            {saga.movies.map((movie, movieIndex) => (
-              <div key={movieIndex} className="movie-item">
-                <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} />
-                <p>{movie.title}</p>
-              </div>
-            ))}
+          <div className="scroll-container">
+            <button className="scroll-button left" onClick={() => scroll('left', document.getElementById(`saga-${index}`))}>◀</button>
+            <div id={`saga-${index}`} className="movie-items">
+              {saga.movies.map((movie, movieIndex) => (
+                <div key={movieIndex} className="movie-item">
+                  {movie.poster_path &&  // Verificar si hay URL de póster
+                    <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={`${movie.title} Poster`} />
+                  }
+                  {movie.poster_path &&
+                    <p>{movie.title}</p>
+                  }
+                </div>
+              ))}
+            </div>
+            <button className="scroll-button right" onClick={() => scroll('right', document.getElementById(`saga-${index}`))}>▶</button>
           </div>
         </div>
       ))}
@@ -78,3 +74,4 @@ const Marathon = () => {
 };
 
 export default Marathon;
+

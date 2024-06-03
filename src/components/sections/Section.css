@@ -73,41 +73,65 @@
 }
 
 .saga-container {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.saga-container h4 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-}
-
-.movies-container {
+.movie-items {
   display: flex;
-  overflow-x: auto; /* Agrega scroll horizontal si hay demasiadas películas */
+  flex-wrap: nowrap;
+  overflow-x: hidden;
 }
 
 .movie-item {
-  flex: 0 0 auto; /* Permitir que las películas se ajusten automáticamente al contenido */
-  margin-right: 20px; /* Espacio entre las películas */
+  margin-right: 20px;
   text-align: center;
-}
-
-.movie-item:last-child {
-  margin-right: 0; /* Eliminar el margen derecho de la última película */
+  width: max-content;
 }
 
 .movie-item img {
-  width: 200px; /* Ancho fijo para las imágenes */
-  height: auto; /* Altura automática */
-  border-radius: 8px;
-  cursor: pointer;
+  width: 150px;
+  height: auto;
 }
 
 .movie-item p {
   margin-top: 5px;
-  font-size: 0.9rem;
-  color: #555;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: normal; /* Permitir múltiples líneas de texto */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Número de líneas a mostrar */
+  -webkit-box-orient: vertical;
+}
+
+.scroll-container {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.scroll-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.scroll-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.scroll-button.left {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: 10px; /* Añadir margen entre las flechas */
+}
+
+.scroll-button.right {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-left: 10px; /* Añadir margen entre las flechas */
 }
 
 
-  
