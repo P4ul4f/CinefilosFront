@@ -1,9 +1,10 @@
 .footer-container {
     background-color: black;
     color: white;
-    padding: 20px 0;
+    padding: 38px;
     bottom: 0;
     width: 100%;
+    border-top: 1px solid white;
   }
   
   .footer-icon {
@@ -23,4 +24,15 @@
   
   .footer-text p {
     margin: 0;
+  }
+
+  .footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100; /* Asegura que el footer esté encima de otros contenidos */
   }

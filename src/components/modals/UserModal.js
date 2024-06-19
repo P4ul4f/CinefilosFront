@@ -8,7 +8,7 @@ import { useState } from 'react';
 import UserLogin from './UserLogin';
 import UserRegister from './UserRegister';
 
-const UserModal = ({ show, handleClose }) => {
+const UserModal = ({ show, handleClose, handleLoginSuccess }) => {
 
     //MODAL LOGIN
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -61,8 +61,8 @@ const UserModal = ({ show, handleClose }) => {
         </Modal>
 
     </Modal>
-    <UserLogin show={showLoginModal} handleClose={handleLoginModalClose} handleUserModalClose={handleClose} />
-    <UserRegister show={showRegisterModal} handleClose={handleRegisterModalClose} handleUserModalClose={handleClose}></UserRegister>
+    <UserLogin show={showLoginModal} handleClose={handleLoginModalClose} handleUserModalClose={handleClose} handleLoginSuccess={handleLoginSuccess}/>
+    <UserRegister show={showRegisterModal} handleClose={handleRegisterModalClose} handleUserModalClose={handleClose} ></UserRegister>
     </>
   );
 }

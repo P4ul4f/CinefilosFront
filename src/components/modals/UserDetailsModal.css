@@ -1,0 +1,77 @@
+
+.modal-container-detailsuser .modal-content {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    width: 350px;
+  }
+
+.custom-modal-header {
+    color: rgb(134, 21, 183);
+    width: 100%;
+    
+  }
+
+  .custom-modal-header .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255); 
+    outline: none; 
+    box-shadow: none;
+  }
+  
+  .custom-modal-header .btn-close:hover {
+    color: rgb(255, 255, 255); /* Color al pasar el ratón por encima */
+  }
+  
+  .custom-modal-header .btn-close:before {
+    content: '\00d7'; /* Símbolo de cerrar (×) */
+  }
+  
+  .custom-modal-title {
+    font-size: 18px; 
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+  }
+  
+ 
+  .custom-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-row {
+    padding: 15px 0px;
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .custom-row .custom-text:hover {
+    color:rgb(134, 21, 183);
+  }
+  
+  .custom-icon {
+    margin-right: 10px; 
+  }
+  
+  .custom-text {
+    font-size: 16px; 
+    color: #fff; 
+  }
+  

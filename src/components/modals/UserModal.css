@@ -77,4 +77,146 @@
   .modal-footer .btn {
     width: 100px; /* Ajusta el ancho de los botones según sea necesario */
   }
+
+  .custom-modal-login .modal-header {
+    border-bottom: 3px solid rgb(134, 21, 183); /* Color del borde inferior del encabezado */
+  }
   
+  
+  .custom-modal-login .modal-footer {
+    border-top: 3px solid rgb(134, 21, 183); /* Color del borde superior del pie */
+  }
+
+  .modal-login-button:hover{
+    background-color: rgb(169, 111, 194);
+  }
+  
+  
+/* REGISTER */
+.custom-header {
+  position: relative;
+}
+
+.centered-title {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.custom-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.custom-input {
+  width: auto;
+  min-width: 250px; /* Ajusta este valor según sea necesario */
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.custom-label {
+  text-align: center;
+}
+
+/* RATINGMODAL */
+
+.custom-modal-rating .modal-content {
+  background-color: black;
+  color: white;
+  text-align: center; /* Centra el texto horizontalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.custom-modal-rating .modal-header {
+  border-bottom: 1px solid rgb(134, 21, 183);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.custom-modal-rating .modal-header .modal-title {
+  color: rgb(134, 21, 183);
+  font-size: 1.8rem;
+}
+
+.custom-modal-rating .modal-body {
+  color: white;
+  width: 100%;
+}
+
+.custom-modal-rating .modal-footer {
+  border-top: 1px solid rgb(134, 21, 183);
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-modal-rating .modal-footer .btn-secondary {
+  background-color: #292929;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.custom-modal-rating .modal-footer .btn-secondary:hover {
+  background-color: rgb(134, 21, 183);
+}
+
+.heart-button {
+  background-color: transparent !important; /* Asegura que el fondo sea transparente */
+  border: none !important; /* Elimina cualquier borde */
+  padding: 0 !important; /* Elimina cualquier padding */
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-button:focus {
+  outline: none; /* Elimina el contorno al enfocar */
+  box-shadow: none; /* Elimina cualquier sombra */
+}
+
+.heart-button svg {
+  transition: fill 0.3s; /* Añade una transición para el cambio de color */
+}
+
+.heart-button:hover svg {
+  fill: rgb(134, 21, 183); /* Cambia el color del ícono al pasar el ratón por encima */
+}
+
+.custom-modal-rating .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white; /* Color del símbolo de cerrar */
+  outline: none; /* Elimina el borde de enfoque */
+  box-shadow: none; /* Elimina cualquier sombra del enfoque */
+}
+
+.custom-modal-rating .btn-close:hover {
+  color: rgb(134, 21, 183); /* Color al pasar el ratón por encima */
+}
+
+.custom-modal-rating .btn-close:before {
+  content: '\00d7'; /* Símbolo de cerrar (×) */
+}
+

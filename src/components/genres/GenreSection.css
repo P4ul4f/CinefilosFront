@@ -3,6 +3,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     padding-left: 20px;
+    width: 100%;
   }
   
   .movie {
@@ -15,5 +16,42 @@
   }
   
   .premiere-poster{
-    padding: 10px;
+    padding: 18px;
   }
+
+  .image-genre{
+    border-radius: 8px;
+  }
+
+  .title-container{
+    padding-top: 4rem;
+    padding-left: 2.5rem;
+  }
+
+  .genre-title{
+    color: rgb(134, 21, 183);
+    font-size: 1.9rem;
+  }
+
+  .loading {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+.load-more {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #8415b7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.load-more:hover {
+    background-color: #5a0e7b;
+}

@@ -1,0 +1,19 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .movie-poster-grid-container {
+    margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+  }
+  
+  .hero-container {
+    position: relative; /* Ajusta según sea necesario */
+    z-index: 1; /* Ajusta el valor del z-index para colocar el Hero encima de otros elementos */
+  }
+  
+  .movie-poster-grid-container {
+    position: relative; /* Ajusta según sea necesario */
+    z-index: 0; /* Ajusta el valor del z-index para colocar el MoviePosterGrid detrás del Hero */
+  }

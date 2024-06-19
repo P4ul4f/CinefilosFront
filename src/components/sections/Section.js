@@ -1,37 +1,36 @@
 import React from 'react'
-import { IoHeartCircleSharp } from "react-icons/io5";
-import { PiPopcornFill } from "react-icons/pi";
-import { GiTicket } from "react-icons/gi";
-import { Container, Row, Col } from 'react-bootstrap';
-import './Section.css';
 import { Link } from 'react-router-dom';
-import Premiere from './Premiere';
+import { Row, Col } from 'react-bootstrap';
+import { IoHeartCircleSharp } from 'react-icons/io5';
+import {PiPopcornFill} from 'react-icons/pi';
+import { GiTicket } from 'react-icons/gi';
+import './Section.css';
 
 const Section = () => {
   return (
     <div className="section-container">
-        <Row className="justify-content-evenly">
-          <Col xs="auto" className="text-center icon-item">
-          <Link to="/favoritos" className="text-decoration-none">
-            <IoHeartCircleSharp className="section-icon"/>
-            <p className="section-text">Favoritos </p>
+      <Row className="justify-content-evenly">
+        <Col xs="auto" className="text-center icon-item">
+          <Link to="/favoritos" className="text-decoration-none section-link">
+            <IoHeartCircleSharp className="section-icon heart-icon" />
+            <p className="section-text">Favoritos</p>
           </Link>
-          </Col>
-          <Col xs="auto" className="text-center icon-item">
-          <Link to="/maraton" className="text-decoration-none">
-          <PiPopcornFill className="section-icon"/>
-          <p className="section-text">Maratón</p>
+        </Col>
+        <Col xs="auto" className="text-center icon-item">
+          <Link to="/maraton" className="text-decoration-none section-link">
+            <img src="/iconpopcorn.png" alt="" style={{width:'50px', height:'50px'}}/>
+            <p className="section-text">Maratón</p>
           </Link>
-          </Col>
-          <Col xs="auto" className="text-center icon-item">
-          <Link to="/estrenos" className="text-decoration-none">
-            <GiTicket className="section-icon" />
+        </Col>
+        <Col xs="auto" className="text-center icon-item">
+          <Link to="/estrenos" className="text-decoration-none section-link">
+            <img src="/iconticket.png" alt="" />
             <p className="section-text">Estrenos</p>
           </Link>
-          </Col>
-        </Row>
+        </Col>
+      </Row>
     </div>
-  )
+  );
 }
 
 export default Section

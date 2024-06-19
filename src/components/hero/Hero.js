@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Button } from '@mui/material';
+import { Paper } from '@mui/material';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Hero.css'
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate desde react-router-dom
+import './Hero.css';
 
 const Hero = ({ movies }) => {
   const [trailers, setTrailers] = useState({});
+  const navigate = useNavigate(); // Hook para la navegación
 
   useEffect(() => {
     const fetchTrailers = async () => {
@@ -47,23 +48,32 @@ const Hero = ({ movies }) => {
     }
   };
 
+  const handlePosterClick = (movieId) => {
+    navigate(`/movie/${movieId}`); // Navegar a la ruta de detalles de la película
+  };
+
   return (
     <div className='movie-carousel-container'>
       <Carousel>
         {movies.map((movie) => (
           <Paper key={movie.id}>
             <div className='movie-card-container'>
-              <div className='movie-card' style={{backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`}}>
+              <div className='movie-card' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}>
                 <div className="movie-detail">
                   <div className='movie-poster'>
-                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`${movie.title} Poster`} />
+                    <img
+                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      alt={`${movie.title} Poster`}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => handlePosterClick(movie.id)} // Manejar clic en el póster
+                    />
                   </div>
-                  <div className='movie-title'>
-                    <h2 style={{ "fontSize":"3rem" }}>{movie.title}</h2>
-                  </div>
-                  <div className="movie-buttons-container">
-                    <div className="play-button-icon-container">
-                      <FontAwesomeIcon className="play-button-icon" icon={faCirclePlay} onClick={() => handlePlayButtonClick(movie.id)} />
+                  <div className='movie-info'>
+                    
+                    <div className="movie-buttons-container">
+                      <div className="play-button-icon-container">
+                        <FontAwesomeIcon className="play-button-icon" icon={faCirclePlay} onClick={() => handlePlayButtonClick(movie.id)} />
+                      </div>
                     </div>
                   </div>
                 </div>

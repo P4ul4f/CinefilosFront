@@ -16,3 +16,25 @@
     margin: 0;
     padding: 0;
 }
+
+/* Estilo para el mensaje de sesión cerrada */
+.logout-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    animation: fadeinout 3s;
+    background-color: black;
+    color: rgb(134, 21, 183);
+    border: none;
+    width: 350px;
+    align-items: center;
+}
+
+@keyframes fadeinout {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
