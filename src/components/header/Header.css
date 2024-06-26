@@ -38,3 +38,70 @@
     90% { opacity: 1; }
     100% { opacity: 0; }
 }
+
+
+/* SEARCHBAR */
+.search-bar {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: black; /* Fondo de los resultados de búsqueda */
+    border-radius: 5px;
+    z-index: 1000;
+    max-height: 400px; /* Limitar la altura para mostrar solo 4 resultados */
+    overflow-y: auto; /* Permitir el desplazamiento vertical */
+  }
+  
+  /* Custom scrollbar styles */
+  .search-results::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .search-results::-webkit-scrollbar-thumb {
+    background-color: rgb(134, 21, 183); /* Color de la barra de desplazamiento */
+    border-radius: 10px;
+  }
+  
+  .search-results::-webkit-scrollbar-track {
+    background: black; /* Color de fondo de la pista de desplazamiento */
+  }
+  
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .search-result-item:hover {
+    background-color: rgb(134, 21, 183);
+  }
+  
+  .search-result-item img {
+    width: 50px;
+    height: 75px;
+    margin-right: 10px;
+  }
+  
+  .image-search {
+    width: 50px;
+    height: 75px;
+  }
+  
+  .search-result-item h5 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .search-result-item p {
+    margin: 0;
+    font-size: 12px;
+  }
+  

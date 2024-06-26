@@ -8,7 +8,7 @@ import { useState } from 'react';
 import UserLogin from './UserLogin';
 import UserRegister from './UserRegister';
 
-const UserModal = ({ show, handleClose, handleLoginSuccess }) => {
+const UserModal = ({ show, handleClose, setShowLoginMessage }) => {
 
     //MODAL LOGIN
     const [showLoginModal, setShowLoginModal] = useState(false);
@@ -34,6 +34,7 @@ const UserModal = ({ show, handleClose, handleLoginSuccess }) => {
     const handleRegisterModalClose = () => {
         setShowRegisterModal(false);
     };
+
   return (
     <>
     <Modal show={show} onHide={handleClose} centered dialogClassName='custom-modal'>
@@ -61,7 +62,7 @@ const UserModal = ({ show, handleClose, handleLoginSuccess }) => {
         </Modal>
 
     </Modal>
-    <UserLogin show={showLoginModal} handleClose={handleLoginModalClose} handleUserModalClose={handleClose} handleLoginSuccess={handleLoginSuccess}/>
+    <UserLogin show={showLoginModal} handleClose={handleLoginModalClose} handleUserModalClose={handleClose} setShowLoginMessage={setShowLoginMessage}/>
     <UserRegister show={showRegisterModal} handleClose={handleRegisterModalClose} handleUserModalClose={handleClose} ></UserRegister>
     </>
   );

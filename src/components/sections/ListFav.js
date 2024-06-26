@@ -2,10 +2,12 @@
 import React from 'react';
 import { useFavorites } from '../../api/FavoritesContext';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const ListFav = () => {
   const { favorites, fetchFavorites, loggedInUser } = useFavorites();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Verificar si loggedInUser y loggedInUser.userId están definidos
@@ -17,6 +19,10 @@ const ListFav = () => {
     }
   }, [loggedInUser, fetchFavorites]);
 
+  const handleMovieClick = (movieId) => {
+    navigate(`/movie/${movieId}`); // Navegar a la ruta específica de la película con su ID
+  };
+
   return (
     <>
     <div className='list-container'>
@@ -26,7 +32,7 @@ const ListFav = () => {
           <p className='list-no-list'>No hay películas en tu lista de favoritos.</p>
         ) : (
           favorites.map((movie) => (
-            <div key={movie.movieId} className='favorite-movie'>
+            <div key={movie.movieId} className='favorite-movie' onClick={() => handleMovieClick(movie.movieId)}>
               <img src={`https://image.tmdb.org/t/p/w200${movie.posterPath}`} alt={movie.title} className='list-img'/>
             </div>
           ))

@@ -1,46 +1,56 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
-// import './UserDetailsDataModal.css'; // Create a separate CSS file for styling this modal
+import React, { useState, useEffect } from 'react';
+import { Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import { useLoggedInUser } from '../../api/AuthContext'; 
-import { useState, useEffect } from 'react';
+import { useLoggedInUser } from '../../api/AuthContext';
+import backendApiClient from '../../api/backendConfig';
+import './UserDataModal.css';
+import { format } from 'date-fns';
 
 const UserDataModal = ({ show, handleClose }) => {
-
-const { loggedInUser } = useLoggedInUser();
+  const { loggedInUser } = useLoggedInUser();
   const [userDetailedData, setUserDetailedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch user detailed data on component mount
   useEffect(() => {
     const fetchUserDetails = async () => {
       setIsLoading(true);
       setError(null);
 
       try {
-        const response = await fetch(`/api/users/${loggedInUser.id}`); // Replace with your API endpoint
-        if (!response.ok) {
-          throw new Error('Failed to fetch user details');
+        if (!loggedInUser || !loggedInUser.userId) {
+          console.error('loggedInUser no está definido o no tiene una propiedad userId válida.');
+          setError('User not logged in or invalid user ID');
+          setIsLoading(false);
+          return;
         }
-        const data = await response.json();
-        setUserDetailedData(data);
+
+        const response = await backendApiClient.get('/details');
+        if (response && response.data) {
+          console.log('Fetched user details:', response.data);
+          setUserDetailedData(response.data);
+        } else {
+          console.error('Error: respuesta vacía o sin datos');
+          setError('Failed to fetch user details');
+        }
       } catch (error) {
+        console.error('Error fetching user details:', error.message);
         setError(error.message);
       } finally {
         setIsLoading(false);
       }
     };
 
-    if (loggedInUser.id) { // Check if user ID is available before fetching
+    if (loggedInUser && loggedInUser.userId) {
       fetchUserDetails();
     }
-  }, [loggedInUser.id]);
-  
+  }, [loggedInUser]);
+
+  const formattedDate = userDetailedData.registrationDate ? format(new Date(userDetailedData.registrationDate), 'dd/MM/yyyy') : '';
 
   return (
-    <Modal show={show} onHide={handleClose} centered className='modal-container-userdetailsdata'>
+    <Modal show={show} onHide={handleClose} centered className='modal-container-userdata'>
       <Modal.Header closeButton className="custom-modal-header">
         <Modal.Title className="custom-modal-title">
           <FontAwesomeIcon icon={faInfoCircle} />
@@ -61,23 +71,23 @@ const { loggedInUser } = useLoggedInUser();
         )}
         {userDetailedData && !isLoading && !error && (
           <>
-            <div className="custom-row">
+            <div className="custom-row" style={{cursor:'default'}}>
               <span className="custom-icon">
                 <FontAwesomeIcon icon={faInfoCircle} />
               </span>
               <span className="custom-text">{userDetailedData.username}</span>
             </div>
-            <div className="custom-row">
+            <div className="custom-row" style={{cursor:'default'}}>
               <span className="custom-icon">
                 <FontAwesomeIcon icon={faInfoCircle} />
               </span>
-              <span className="custom-text">Rol: {userDetailedData.rol}</span>
+              <span className="custom-text">Rol: {userDetailedData.userRole}</span>
             </div>
-            <div className="custom-row">
+            <div className="custom-row" style={{cursor:'default'}}>
               <span className="custom-icon">
                 <FontAwesomeIcon icon={faInfoCircle} />
               </span>
-              <span className="custom-text">Fecha de registro: {userDetailedData.registrationDate}</span>
+              <span className="custom-text">Fecha de registro: {formattedDate}</span>
             </div>
           </>
         )}
@@ -87,3 +97,5 @@ const { loggedInUser } = useLoggedInUser();
 };
 
 export default UserDataModal;
+
+

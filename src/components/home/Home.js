@@ -3,6 +3,7 @@ import Hero from '../hero/Hero'
 import Section from '../sections/Section'
 import MoviePosterGrid from '../hero/MovieGrid'
 import './Home.css';
+import TopRatedMovies from '../sections/TopRatedMovies';
 
 const Home = ({ movies }) => {
   return (
@@ -12,6 +13,7 @@ const Home = ({ movies }) => {
       <div className="movie-poster-grid-container">
         <MoviePosterGrid />
       </div>
+      <TopRatedMovies/>
     </div>
   );
 }

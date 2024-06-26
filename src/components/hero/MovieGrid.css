@@ -1,33 +1,33 @@
-.movie-poster-carousel {
+.movie-poster-carousel-2 {
     position: relative;
     width: 100%;
     overflow: hidden;
     padding-bottom: 50px;
   }
   
-  .carousel-wrapper {
+  .carousel-wrapper-2 {
     display: flex;
     overflow: hidden;
   }
   
-  .carousel-content {
+  .carousel-content-2 {
     display: flex;
     transition: transform 0.3s ease-in-out;
   }
   
-  .movie-poster-item {
+  .movie-poster-item-2 {
     flex: 0 0 auto;
     padding: 0 10px;
     text-align: center;
   }
   
-  .poster-image {
+  .poster-image-2 {
     width: auto;
     height: 300px; 
     border-radius: 8px;
   }
   
-  .no-poster {
+  .no-poster-2 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,6 +78,6 @@
     background-color: #555;
   }
   
-  .carousel-title{
+  .carousel-title-2{
     padding: 20px;
 }

@@ -5,30 +5,31 @@ import HeartBrokenIcon from './icons/HeartBrokenIcon';
 import './UserModal.css';
 import backendApiClient from '../../api/backendConfig';
 
-const RatingModal = ({ show, handleClose, movieId, loggedInUser }) => {
+const RatingModal = ({ show, handleClose, movieId, loggedInUser, onRatingSubmit }) => {
   const [liked, setLiked] = useState(null);
 
   const handleLike = async (isLiked) => {
-    try {
+    setLiked(isLiked);  // Actualiza el estado inmediatamente
 
+    try {
       if (!loggedInUser || !loggedInUser.userId) {
         console.error('loggedInUser no está definido o no tiene una propiedad id válida.');
         return;
       }
-  
+
       const response = await backendApiClient.post('/rate', {
         userId: loggedInUser.userId,
         movieId: movieId,
         liked: isLiked
       });
-  
-      
+
       if (response && response.data) {
         console.log('Calificación enviada correctamente:', response.data);
+        onRatingSubmit(isLiked);  // Pasa el valor correcto a la función onRatingSubmit
+        handleClose();
       } else {
         console.error('Error: respuesta vacía o sin datos');
       }
-      handleClose(); // Cierra el modal después de enviar la calificación
     } catch (error) {
       console.error('Error al enviar la calificación:', error);
       // Maneja el error de acuerdo a tus requerimientos
@@ -50,18 +51,25 @@ const RatingModal = ({ show, handleClose, movieId, loggedInUser }) => {
             className="heart-button"
             onClick={() => handleLike(true)}
           >
-            <HeartIcon size={30} color={liked === true ? 'white' : 'white'} />
+            <HeartIcon size={30} color={liked === true ? 'rgb(134, 21, 183)' : 'white'} />
           </Button>
           <Button
             variant="light"
             className="heart-button"
             onClick={() => handleLike(false)}
           >
-            <HeartBrokenIcon size={30} color={liked === false ? 'white' : 'white'} />
+            <HeartBrokenIcon size={30} color={liked === false ? 'rgb(134, 21, 183)' : 'white'} />
           </Button>
         </div>
       </Modal.Body>
     </Modal>
   );
 };
+
 export default RatingModal;
+
+
+
+
+
+

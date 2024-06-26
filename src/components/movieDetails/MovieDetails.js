@@ -8,6 +8,9 @@ import Spinner from '../spinner/Spinner'; // Importa el componente Spinner
 import './MovieDetail.css';
 import AuthContext, { useLoggedInUser } from '../../api/AuthContext';
 import { useFavorites } from '../../api/FavoritesContext';
+import backendApiClient from '../../api/backendConfig';
+import HeartBrokenIcon from '../modals/icons/HeartBrokenIcon';
+import HeartIcon from '../modals/icons/HeartIcon';
 
 
 const MovieDetails = () => {
@@ -20,6 +23,8 @@ const MovieDetails = () => {
   const language = 'es'; // Definir el idioma como español
   const {loggedInUser} = useLoggedInUser();
   const {addFavorite} = useFavorites();
+  const [userRating, setUserRating] = useState(null);
+  const [userHasRated, setUserHasRated] = useState(false);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -45,9 +50,35 @@ const MovieDetails = () => {
       }
     };
 
-    fetchMovieDetails();
-    fetchCredits();
-  }, [id]);
+    const fetchUserRating = async () => {
+      try {
+        if (movie && loggedInUser) {
+          const response = await backendApiClient.get(`/movie/${movie.id}/rating/${loggedInUser.userId}`);
+
+          if (response.data && response.data.liked !== null) {
+            setUserRating(response.data.liked);
+            setUserHasRated(true); // Marcar que el usuario ha calificado
+          } else {
+            setUserRating(null);
+            setUserHasRated(false); // Marcar que el usuario no ha calificado
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user rating:', error);
+        setUserRating(null);
+        setUserHasRated(false);
+      }
+    };
+    
+
+    const fetchData = async () => {
+      setLoading(true);
+      await Promise.all([fetchMovieDetails(), fetchCredits(), fetchUserRating()]);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [id, loggedInUser]);
 
   const openRatingModal = () => {
     setShowRatingModal(true);
@@ -65,6 +96,11 @@ const MovieDetails = () => {
     } else {
       alert('Debes iniciar sesión para agregar películas a tu lista de favoritos.');
     }
+  };
+
+  const handleRatingSubmit = (liked) => {
+    setUserRating(liked);
+    setUserHasRated(true);
   };
   
 
@@ -99,11 +135,20 @@ const MovieDetails = () => {
           <div className='movie-all-details'>
             <div className='title-rating-top'>
               <h2>{movie.title}</h2>
-              <div className='buttons-rating'>
-                <button onClick={openRatingModal} className='button-rating'>
-                  <FontAwesomeIcon icon={faHeart} /> Calificar
-                </button>
-                <button className='button-rating' onClick={handleAddToFavorites}>
+              <div className="buttons-rating">
+                {userHasRated ? (
+                  <div className="rated-info">
+                    <p style={{color:'white'}}>Tu calificación  {userRating ? <HeartIcon color="rgb(134, 21, 183)" /> : <HeartBrokenIcon color="rgb(134, 21, 183)" />}</p>
+                  </div>
+                ) : (
+                  <div className="button-container">
+                    <button onClick={openRatingModal} className="button-rating">
+                      <FontAwesomeIcon icon={faHeart} style={{ color: 'white' }} />
+                      Calificar
+                    </button>
+                  </div>
+                )}
+                <button className="button-rating" onClick={handleAddToFavorites}>
                   <FontAwesomeIcon icon={faPlus} /> Añadir a mi lista
                 </button>
               </div>
@@ -126,6 +171,7 @@ const MovieDetails = () => {
         handleClose={closeRatingModal}
         movieId={movie.id}
         loggedInUser={loggedInUser} 
+        onRatingSubmit={handleRatingSubmit}
       />
     </div>
   );

@@ -48,28 +48,28 @@ const MoviePosterGrid = () => {
   };
 
   return (
-    <div className="movie-poster-carousel">
-        <div className="carousel-title"><h3 style={{color:'rgb(134, 21, 183)'}}>Descubrir</h3></div>
-      <div className="carousel-wrapper">
+    <div className="movie-poster-carousel-2">
+        <div className="carousel-title-2"><h3 style={{color:'rgb(134, 21, 183)'}}>Descubrir</h3></div>
+      <div className="carousel-wrapper-2">
         <div
-          className="carousel-content"
+          className="carousel-content-2"
           style={{
             transform: `translateX(-${currentIndex * (100 / movies.length)}%)`,
             transition: 'transform 1s ease' // Ajusta la duración de la transición según sea necesario
           }}
         >
           {movies.map((movie, index) => (
-            <div key={movie.id} className="movie-poster-item">
+            <div key={movie.id} className="movie-poster-item-2">
               {movie.poster_path ? (
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}
-                  className="poster-image"
+                  className="poster-image-2"
                   onClick={() => handlePosterClick(movie.id)}
                   style={{cursor:'pointer'}}
                 />
               ) : (
-                <div className="no-poster">No Poster Available</div>
+                <div className="no-poster-2">No Poster Available</div>
               )}
               
             </div>

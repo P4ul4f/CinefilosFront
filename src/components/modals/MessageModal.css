@@ -1,0 +1,17 @@
+.message-modal{
+    background-color: black;
+    color: rgb(134, 21, 183);
+    border-radius: 5px;
+    border: none !important;
+    height: 100%;
+}
+
+.message-alert{
+    background-color: black !important;
+    border: none !important;
+}
+
+.message-title{
+    color: rgb(134, 21, 183);
+    font-size: 1.2rem;
+}

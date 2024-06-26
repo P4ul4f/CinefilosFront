@@ -12,19 +12,19 @@ export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const { loggedInUser} = useLoggedInUser();
 
-    useEffect(() => {
-      const fetchFavorites = async () => {
-        if (loggedInUser) {
-          try {
-            const response = await backendApiClient.get(`/favorites/${loggedInUser.userId}`);
-            setFavorites(response.data);
-          } catch (error) {
-            console.error('Error al cargar los favoritos:', error);
-          }
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      if (loggedInUser && loggedInUser.userId) {
+        try {
+          const response = await backendApiClient.get(`/favorites/${loggedInUser.userId}`);
+          setFavorites(response.data);
+        } catch (error) {
+          console.error('Error al cargar los favoritos:', error);
         }
-      };
-      fetchFavorites();
-    }, [loggedInUser]);
+      }
+    };
+    fetchFavorites();
+  }, [loggedInUser]);
   
 
   const addFavorite = async (movie) => {

@@ -1,0 +1,39 @@
+/* DATA MODAL */
+.modal-container-userdata .modal-content {
+    background-color: black;
+    color: rgb(134, 21, 183);
+  }
+  
+  .custom-modal-header {
+    border-bottom: 1px solid rgb(134, 21, 183);
+  }
+  
+  .custom-modal-title {
+    color: rgb(134, 21, 183);
+  }
+  
+  .custom-body {
+    color: rgb(134, 21, 183);
+  }
+  
+  .custom-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+  }
+  
+  .custom-icon {
+    margin-right: 10px;
+  }
+  
+  .custom-text {
+    flex: 1;
+  }
+  
+  .loading-message, .error-message {
+    text-align: center;
+    padding: 20px 0;
+    color: rgb(134, 21, 183);
+  }
+  

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import {jwtDecode} from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -10,6 +11,15 @@ export const useLoggedInUser = () => {
   return context;
 };
 
+const decodeToken = (token) => {
+  try {
+    return jwtDecode(token);
+  } catch (error) {
+    console.error('Error decoding token:', error);
+    return null;
+  }
+};
+
 export const AuthProvider = ({ children }) => {
   const [loggedInUser, setLoggedInUser] = useState(null);
   const [token, setToken] = useState(null);
@@ -18,41 +28,29 @@ export const AuthProvider = ({ children }) => {
     setLoggedInUser(user);
     setToken(token);
     localStorage.setItem('token', token);
+    localStorage.setItem('userId', user.userId);
   };
 
   const logout = () => {
     setLoggedInUser(null);
     setToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
   };
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
     console.log('Token almacenado en localStorage:', token);
   
-    if (token && !loggedInUser) {
-      try {
-        const userFromToken = parseJwt(token); // Decodificar el token JWT aquí
-        console.log('Usuario obtenido del token:', userFromToken);
-        setLoggedInUser(userFromToken);
-      } catch (error) {
-        console.error('Error al decodificar el token:', error);
-        localStorage.removeItem('token');
+    if (token && userId) {
+      const decodedToken = decodeToken(token);
+      if (decodedToken && decodedToken.sub) {
+        setLoggedInUser({ userId, username: decodedToken.sub }); // Asume que el sub del token es el username
+        setToken(token);
       }
     }
-  }, [loggedInUser]);
-  
-
-  // Función para decodificar el token JWT
-  const parseJwt = (token) => {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    return JSON.parse(jsonPayload);
-  };
+  }, []);
 
   return (
     <AuthContext.Provider value={{ loggedInUser, setLoggedInUser, token, login, logout }}>

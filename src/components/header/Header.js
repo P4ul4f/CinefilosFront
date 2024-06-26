@@ -6,6 +6,10 @@ import { faVideoSlash, faSearch, faUserCircle } from '@fortawesome/free-solid-sv
 import { useLoggedInUser } from '../../api/AuthContext';
 import UserModal from '../modals/UserModal'; // Importar el modal de inicio de sesión / registro
 import UserDetailsModal from '../modals/UserDetailsModal'; // Importar el modal de detalles del usuario
+import './Header.css';
+import MessageModal from '../modals/MessageModal';
+import SearchBar from './SearchBar';
+
 
 const Header = () => {
   const { loggedInUser, setLoggedInUser } = useLoggedInUser();
@@ -23,21 +27,32 @@ const Header = () => {
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
 
+
   // Función para manejar el cierre de sesión
   const handleLogout = () => {
     localStorage.removeItem('token'); // Limpiar el token del localStorage
     setLoggedInUser(null); // Actualizar el estado del usuario autenticado
     setShowModalUserDetails(false);
     setShowLogoutMessage(true);
+    setShowLoginMessage(false);
 
     setTimeout(() => {
       setShowLogoutMessage(false);
     }, 3000);
   };
 
+  const handleCloseLoginMessage = () => {
+    setShowLoginMessage(false);
+  };
+
+  const handleCloseLogoutMessage = () => {
+    setShowLoginMessage(false);
+  };
+  
+
   return (
     <>
-      <Navbar variant='dark' fixed='top' style={{ backgroundColor: 'black' }} className='custom-header'>
+      <Navbar variant='dark' fixed='top' style={{ backgroundColor: 'black'}} className='custom-header'>
         <Container fluid>
           <Navbar.Brand href='/' style={{ color: 'rgb(134, 21, 183)' }}>
             <img src="/LOGO.png" alt="" style={{ height: '100px', width: '100px' }} />Cinefilos
@@ -58,19 +73,7 @@ const Header = () => {
               </NavDropdown>
             </Nav>
             <div className="d-flex align-items-center" style={{ gap: '30px' }}>
-              <Form className="d-flex">
-                <div className="input-group">
-                  <FormControl
-                    type="search"
-                    placeholder="Buscar"
-                    className="mr-2"
-                    aria-label="Buscar"
-                  />
-                  <Button variant="outline-light" id="button-addon2">
-                    <FontAwesomeIcon icon={faSearch} />
-                  </Button>
-                </div>
-              </Form>
+              <SearchBar/>
               {loggedInUser ? (
                 <FontAwesomeIcon
                   icon={faUserCircle}
@@ -90,25 +93,18 @@ const Header = () => {
       </Navbar>
 
       {/* MODAL DE INICIO DE SESIÓN / REGISTRO */}
-      <UserModal show={showModal} handleClose={handleModalClose} />
+      <UserModal show={showModal} handleClose={handleModalClose} setShowLoginMessage={setShowLoginMessage}/>
 
       {/* MODAL DE DETALLES DEL USUARIO */}
       {loggedInUser && (
         <UserDetailsModal show={showModalUserDetails} handleClose={handleUserDetailsModalClose} user={loggedInUser} handleLogout={handleLogout} />
       )}
 
-      {showLoginMessage && (
-        <Alert variant="success" className="centered-alert">
-          Inicio de sesión exitoso.
-        </Alert>
-      )}
+      <MessageModal show={showLoginMessage} handleClose={handleCloseLoginMessage} message="Inicio de sesión exitoso." />
 
-      {/* MENSAJE DE SESIÓN CERRADA */}
-      {showLogoutMessage && (
-        <Alert variant="success" className="logout-message">
-          Sesión cerrada con éxito.
-        </Alert>
-      )}
+      {/* Renderizado del modal para mensajes de cierre de sesión */}
+      <MessageModal show={showLogoutMessage} handleClose={handleCloseLogoutMessage} message="Sesión cerrada con éxito." />
+            
     </>
   );
 }

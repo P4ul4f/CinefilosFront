@@ -27,7 +27,7 @@ const UserRegister = ({ show, handleClose, handleUserModalClose }) => {
       handleUserModalClose();
     } catch (error) {
       console.error('Error de registro de usuario:', error);
-      setErrorMessage('Error de registro de usuario: ' + error.response.data.message);
+      setErrorMessage('Error de registro de usuario: Prueba otro nombre de usuario');
     }
   };
 
