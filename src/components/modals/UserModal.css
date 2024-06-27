@@ -220,3 +220,67 @@
   content: '\00d7'; /* Símbolo de cerrar (×) */
 }
 
+/* ResetPasswordModal */
+
+.custom-modal-reset .modal-content {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  width: 100%; /* Ajusta el ancho según sea necesario */
+  border-radius: 8px;
+  border: none;
+}
+
+.custom-form-reset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 35px;
+}
+
+.custom-form-reset .form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.custom-form-reset .form-control {
+  background-color: #222;
+  color: white;
+  border: 1px solid #444;
+  width: 100%;
+}
+
+.custom-form-reset .form-control::placeholder {
+  color: #a6a6a6;
+}
+
+.modal-footer-reset {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.modal-footer-reset .btn {
+  width: 100px; /* Ajusta el ancho de los botones según sea necesario */
+}
+
+.custom-modal-reset .modal-header {
+  border-bottom: 3px solid rgb(134, 21, 183); /* Color del borde inferior del encabezado */
+}
+
+.custom-modal-reset .modal-footer {
+  border-top: 3px solid rgb(134, 21, 183); /* Color del borde superior del pie */
+}
+
+.modal-reset-button2 {
+  background-color: rgb(134, 21, 183) !important;
+  border: 1px solid white !important;
+}
+
+.modal-reset-button2:hover {
+  background-color: rgb(169, 111, 194) !important;
+}

@@ -3,6 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import { IoClose } from 'react-icons/io5';
 import backendApiClient from '../../api/backendConfig';
 import { useLoggedInUser } from '../../api/AuthContext'; 
+import ResetPasswordModal from './ResetPasswordModal';
 
 
 const UserLogin = ({ show, handleClose, setShowLoginMessage }) => {
@@ -10,6 +11,7 @@ const UserLogin = ({ show, handleClose, setShowLoginMessage }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showResetModal, setShowResetModal] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -56,6 +58,14 @@ const UserLogin = ({ show, handleClose, setShowLoginMessage }) => {
     }
   };
 
+  const handleShowResetModal = () => {
+    setShowResetModal(true);
+  };
+
+  const handleCloseResetModal = () => {
+    setShowResetModal(false);
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose} dialogClassName='custom-modal-login' centered>
@@ -100,13 +110,20 @@ const UserLogin = ({ show, handleClose, setShowLoginMessage }) => {
             </Form.Group>
           </Form>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          {/* Botón para abrir el modal de reseteo */}
+          <Button variant="link" className='centered' style={{justifyContent:'center', color:'rgb(134, 21, 183)', width:'100%'}} onClick={handleShowResetModal}>
+            Olvidé mi contraseña
+          </Button>
         </Modal.Body>
         <Modal.Footer className="justify-content-center">
           <Button variant="dark" onClick={handleLogin}>
             Aceptar
           </Button>
         </Modal.Footer>
+        <ResetPasswordModal show={showResetModal} handleClose={handleCloseResetModal} />
       </Modal>
+
+      
   </>
   );
 };
