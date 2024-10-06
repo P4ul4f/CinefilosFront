@@ -26,7 +26,7 @@ const UserDataModal = ({ show, handleClose }) => {
           return;
         }
 
-        const response = await backendApiClient.get('/details');
+        const response = await backendApiClient.get('/user-details');
         if (response && response.data) {
           console.log('Fetched user details:', response.data);
           setUserDetailedData(response.data);

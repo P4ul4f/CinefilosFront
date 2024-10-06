@@ -81,7 +81,9 @@ const Premiere = () => {
 
   return (
     <div className="premiere-container">
+      <div className='title-container'>
       <h3 className='genre-title' style={{ paddingTop: '3rem', paddingLeft: '1rem' }}>Estrenos {currentYear}</h3>
+      </div>
       {loading && <Spinner />} {/* Mostrar el spinner durante la carga */}
       <div className="premiere-posters-container">
         {[...movies].map((movie) => ( // Convertir Set a array y mapear

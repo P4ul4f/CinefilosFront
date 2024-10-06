@@ -39,7 +39,7 @@
   .premiere-posters-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Ajusta la alineación horizontal */
+    justify-content: center; /* Ajusta la alineación horizontal */
     gap: 8px; /* Espacio entre los pósters */
     width: 100%;
   }
@@ -56,13 +56,13 @@
 
 /* FAVORITE */
 .favorite-container {
-  padding: 20px;
+  padding: 0px !important;
 }
 
 .favorite-posters-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Ajusta la alineación horizontal */
+  justify-content: center; /* Ajusta la alineación horizontal */
   gap: 10px; /* Espacio entre los pósters */
   padding-top: 1.5rem;
 }
@@ -78,6 +78,17 @@
   cursor: pointer;
 }
 
+.title-container{
+  padding-left: 2.5rem;
+  flex-direction: column;
+}
+
+.genre-title{
+  color: rgb(134, 21, 183);
+  font-size: 1.9rem;
+  text-align: center;
+}
+
 
 
 
@@ -89,12 +100,14 @@
 
 .saga-container {
   margin-bottom: 0;
+  
 }
 
 .movie-items {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
+  padding-top: 2rem;
 }
 
 .movie-item {
@@ -181,12 +194,10 @@
 
 /* LISTAFAVS */
 .list-container{
-  padding: 120px;
-  padding-left: 30px;
-  width: 100%;
-  height: 80vh;
+  padding-top: 115px;
+  padding-left: 50px;
+  height: 100%;
   background-color: black;
-  margin: auto;
   display: flex;
   flex-direction: column;
 }

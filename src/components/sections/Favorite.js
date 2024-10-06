@@ -41,7 +41,9 @@ const Favorite = () => {
 
   return (
     <div className="favorite-container">
+      <div className='title-container'>
       <h3 className='genre-title' style={{paddingTop:'2.5rem'}}>Favoritas del público</h3>
+      </div>
       <div className="favorite-posters-container">
         {movies.map((movie) => (
           <div key={movie.id} className="favorite-poster" onClick={() => handleMovieClick(movie.id)}>

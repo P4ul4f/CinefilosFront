@@ -26,6 +26,7 @@ const Header = () => {
 
   const [showLogoutMessage, setShowLogoutMessage] = useState(false);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
+  const [showRegisterMessage, setShowRegisterMessage] = useState(false);
 
 
   // Función para manejar el cierre de sesión
@@ -88,12 +89,15 @@ const Header = () => {
                 />
               )}
             </div>
+            {/* <div >
+              <button onClick={handleLogout}> cerrar</button>
+            </div> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
       {/* MODAL DE INICIO DE SESIÓN / REGISTRO */}
-      <UserModal show={showModal} handleClose={handleModalClose} setShowLoginMessage={setShowLoginMessage}/>
+      <UserModal show={showModal} handleClose={handleModalClose} setShowLoginMessage={setShowLoginMessage} setShowRegisterMessage={setShowRegisterMessage}/>
 
       {/* MODAL DE DETALLES DEL USUARIO */}
       {loggedInUser && (
@@ -105,6 +109,7 @@ const Header = () => {
       {/* Renderizado del modal para mensajes de cierre de sesión */}
       <MessageModal show={showLogoutMessage} handleClose={handleCloseLogoutMessage} message="Sesión cerrada con éxito." />
             
+      <MessageModal show={showRegisterMessage} handleClose={()=> setShowRegisterMessage(false)} message="Usuario registrado exitosamente"></MessageModal>
     </>
   );
 }

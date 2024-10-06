@@ -11,6 +11,7 @@ import { useFavorites } from '../../api/FavoritesContext';
 import backendApiClient from '../../api/backendConfig';
 import HeartBrokenIcon from '../modals/icons/HeartBrokenIcon';
 import HeartIcon from '../modals/icons/HeartIcon';
+import UserLogin from '../modals/UserLogin';
 
 
 const MovieDetails = () => {
@@ -18,6 +19,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [credits, setCredits] = useState(null); // Estado para almacenar los créditos de la película
   const [showRatingModal, setShowRatingModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [loading, setLoading] = useState(true); // Estado para controlar la carga de los detalles
   const apiKey = 'b9d0f880d08f6f661a756fd3f73c754e';
   const language = 'es'; // Definir el idioma como español
@@ -81,7 +83,11 @@ const MovieDetails = () => {
   }, [id, loggedInUser]);
 
   const openRatingModal = () => {
-    setShowRatingModal(true);
+    if (loggedInUser) {
+      setShowRatingModal(true);
+    } else {
+      setShowLoginModal(true); // Si no hay sesión, se abre el modal de login
+    }
   };
 
   // Función para cerrar el modal de calificación
@@ -89,12 +95,16 @@ const MovieDetails = () => {
     setShowRatingModal(false);
   };
 
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
+
   const handleAddToFavorites = () => {
     if (loggedInUser) {
       addFavorite({ ...movie, userId: loggedInUser.userId });
       alert(`${movie.title} ha sido añadida a tu lista de favoritos.`);
     } else {
-      alert('Debes iniciar sesión para agregar películas a tu lista de favoritos.');
+      setShowLoginModal(true);
     }
   };
 
@@ -111,7 +121,7 @@ const MovieDetails = () => {
   if (!movie || !credits) {
     return <div>Error al cargar los detalles de la película</div>;
   }
-  console.log('loggedInUser:', loggedInUser);
+ 
 
   return (
     <div className="movie-details">
@@ -173,6 +183,8 @@ const MovieDetails = () => {
         loggedInUser={loggedInUser} 
         onRatingSubmit={handleRatingSubmit}
       />
+      {/* Modal de inicio de sesión */}
+      <UserLogin show={showLoginModal} handleClose={closeLoginModal} />
     </div>
   );
 };

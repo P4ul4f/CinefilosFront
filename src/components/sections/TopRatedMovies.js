@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './TopRatedMovies.css'; // Importa los estilos CSS aquí
+import './TopRatedMovies.css';
 import backendApiClient from '../../api/backendConfig';
+import { useLoggedInUser } from '../../api/AuthContext';
 
 const TopRatedMovies = () => {
+  const { loggedInUser } = useLoggedInUser();
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const apiKey = 'b9d0f880d08f6f661a756fd3f73c754e';
@@ -27,8 +29,10 @@ const TopRatedMovies = () => {
       }
     };
 
-    fetchTopRatedMovies();
-  }, []);
+    if (loggedInUser) {
+      fetchTopRatedMovies();
+    }
+  }, [loggedInUser]);
 
   const goToPrevSlide = () => {
     const lastIndex = movies.length - 1;
@@ -41,6 +45,14 @@ const TopRatedMovies = () => {
     const newIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
+
+  if (!loggedInUser) {
+    return (
+      <div className="not-logged-in-message">
+        <p></p>
+      </div>
+    );
+  }
 
   return (
     <div className="top-rated-movies-container">
@@ -69,8 +81,6 @@ const TopRatedMovies = () => {
 };
 
 export default TopRatedMovies;
-
-
 
 
 

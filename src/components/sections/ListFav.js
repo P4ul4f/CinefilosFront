@@ -3,6 +3,7 @@ import React from 'react';
 import { useFavorites } from '../../api/FavoritesContext';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Section.css'
 
 
 const ListFav = () => {
