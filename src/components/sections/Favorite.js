@@ -6,7 +6,7 @@ import './Section.css';
 const Favorite = () => {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // Estado para mantener la página actual
-  const resultsPerPage = 20; // Número de resultados por página
+  const resultsPerPage = 24; // Número de resultados por página
   const apiKey = 'b9d0f880d08f6f661a756fd3f73c754e';
   const navigate = useNavigate(); // Hook para navegar a otra ruta
 
@@ -42,7 +42,7 @@ const Favorite = () => {
   return (
     <div className="favorite-container">
       <div className='title-container'>
-      <h3 className='genre-title' style={{paddingTop:'2.5rem'}}>Favoritas del público</h3>
+      <h3 className='genre-title'>Favoritas del público</h3>
       </div>
       <div className="favorite-posters-container">
         {movies.map((movie) => (

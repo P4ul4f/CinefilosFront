@@ -28,7 +28,6 @@ const UserDataModal = ({ show, handleClose }) => {
 
         const response = await backendApiClient.get('/user-details');
         if (response && response.data) {
-          console.log('Fetched user details:', response.data);
           setUserDetailedData(response.data);
         } else {
           console.error('Error: respuesta vacía o sin datos');

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './TopRatedMovies.css';
 import backendApiClient from '../../api/backendConfig';
@@ -8,6 +8,7 @@ const TopRatedMovies = () => {
   const { loggedInUser } = useLoggedInUser();
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef(null);
   const apiKey = 'b9d0f880d08f6f661a756fd3f73c754e';
 
   useEffect(() => {
@@ -34,17 +35,20 @@ const TopRatedMovies = () => {
     }
   }, [loggedInUser]);
 
-  const goToPrevSlide = () => {
-    const lastIndex = movies.length - 1;
-    const newIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
+  useEffect(() => {
+    // Función para ir a la siguiente película
+    const nextSlide = () => {
+      setCurrentIndex((prevIndex) => (prevIndex === movies.length - 1 ? 0 : prevIndex + 1));
+    };
 
-  const goToNextSlide = () => {
-    const lastIndex = movies.length - 1;
-    const newIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+    // Configurar el intervalo para cambiar automáticamente cada 3 segundos
+    intervalRef.current = setInterval(nextSlide, 2980); // Cambia la duración aquí si lo deseas
+
+    // Limpiar el intervalo al desmontar el componente
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [movies]);
 
   if (!loggedInUser) {
     return (
@@ -56,10 +60,15 @@ const TopRatedMovies = () => {
 
   return (
     <div className="top-rated-movies-container">
-      <h3 className="top-rated-movies-title">Películas Mejor Valoradas</h3>
+      <h3 className="top-rated-movies-title">Mejor Valoradas en Cinéfilos</h3>
       <div className="movie-poster-carousel">
-        <button className="carousel-control prev" onClick={goToPrevSlide}>‹</button>
-        <div className="movie-posters" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div
+          className="movie-posters"
+          style={{
+            transform: `translateX(-${currentIndex * (240 / movies.length)}%)`,
+            transition: 'transform 1s ease', // Transición suave
+          }}
+        >
           {movies.map(movie => (
             <div key={movie.id} className="movie-poster-item">
               {movie.poster_path ? (
@@ -74,7 +83,6 @@ const TopRatedMovies = () => {
             </div>
           ))}
         </div>
-        <button className="carousel-control next" onClick={goToNextSlide}>›</button>
       </div>
     </div>
   );

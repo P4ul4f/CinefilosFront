@@ -6,7 +6,7 @@
 
 .movie-poster {
     height: 300px;
-    border: 1px solid rgb(134, 21, 183);
+    border: 1px solid white;
     border-radius: 10px;
     overflow: hidden;
     margin-left: 8rem; 
@@ -74,7 +74,7 @@
 }
 
 .play-button-icon {
-    color: rgb(134, 21, 183);
+    color: white;
     font-size: 3rem;
     transition: 0.3s;
     cursor: pointer;

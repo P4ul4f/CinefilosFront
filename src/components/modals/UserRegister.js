@@ -21,7 +21,6 @@ const UserRegister = ({ show, handleClose, handleUserModalClose }) => {
           'Content-Type': 'application/json'
         }
       });
-      console.log('Usuario registrado exitosamente:', response.data);
       // Cierra ambos modales después del registro exitoso
       handleClose();
       handleUserModalClose();

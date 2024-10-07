@@ -12,19 +12,19 @@ const Section = () => {
       <Row className="justify-content-evenly">
         <Col xs="auto" className="text-center icon-item">
           <Link to="/favoritos" className="text-decoration-none section-link">
-            <IoHeartCircleSharp className="section-icon heart-icon" />
+            <IoHeartCircleSharp className="section-icon heart-icon" style={{width:'70px', height:'70px'}}/>
             <p className="section-text">Favoritos</p>
           </Link>
         </Col>
         <Col xs="auto" className="text-center icon-item">
           <Link to="/maraton" className="text-decoration-none section-link">
-            <img src="/iconpopcorn.png" alt="" style={{width:'50px', height:'50px'}}/>
+            <img src="/iconpopcorn.png" alt="" style={{width:'68px', height:'68px'}}/>
             <p className="section-text">Maratón</p>
           </Link>
         </Col>
         <Col xs="auto" className="text-center icon-item">
           <Link to="/estrenos" className="text-decoration-none section-link">
-            <img src="/iconticket.png" alt="" />
+            <img src="/iconticket.png" alt="" style={{width:'65px', height:'65px'}} />
             <p className="section-text">Estrenos</p>
           </Link>
         </Col>

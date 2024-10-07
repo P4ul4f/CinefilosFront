@@ -18,7 +18,7 @@ const MoviePosterGrid = () => {
             language: 'en-US',
             sort_by: 'vote_average.desc',
             'vote_count.gte': 1000,
-            page: 10
+            page: 100
           }
         });
         setMovies(response.data.results);
@@ -49,7 +49,7 @@ const MoviePosterGrid = () => {
 
   return (
     <div className="movie-poster-carousel-2">
-        <div className="carousel-title-2"><h3 style={{color:'rgb(134, 21, 183)'}}>Descubrir</h3></div>
+        <div className="carousel-title-2"><h3 style={{color:'white', fontSize:'26px'}}>Descubrir</h3></div>
       <div className="carousel-wrapper-2">
         <div
           className="carousel-content-2"

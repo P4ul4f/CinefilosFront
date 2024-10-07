@@ -25,7 +25,6 @@ function App() {
   const getPopularMovies = async () => {
     try {
       const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
-      console.log(response.data.results);
 
       if (response.data.results) {
         // Simular una pequeña demora (por ejemplo, 1 segundo) antes de cambiar isLoading a false

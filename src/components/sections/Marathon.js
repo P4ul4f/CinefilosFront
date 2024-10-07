@@ -63,7 +63,7 @@ const Marathon = () => {
   };
 
   return (
-    <div className="marathon-container" style={{ paddingTop: '50px' }}>
+    <div className="marathon-container" >
       {loading && <Spinner />} {/* Mostrar el spinner durante la carga */}
       {sagas.map((saga, index) => (
         <div key={index} className="saga-container">

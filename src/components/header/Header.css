@@ -104,4 +104,28 @@
     margin: 0;
     font-size: 12px;
   }
+
+  /* Estilos normales del botón */
+.search-button-header {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+}
+
+/* Estilo normal del ícono de búsqueda (lupa) */
+.search-icon {
+  color: white;
+  transition: color 0.3s ease; /* Transición suave al cambiar de color */
+}
+
+/* Estilos en hover para cambiar a color violeta */
+.search-button-header:hover .search-icon {
+  color: black;
+}
+
+.text-nav-link{
+  font-size: 1.3rem;
+}
+
   

@@ -23,15 +23,13 @@
   }
 
   .title-container{
-    padding-top: 7rem;
-    padding-left: 2.5rem;
-    flex-direction: column;
+    padding-top: 8rem;
+    text-align: start;
   }
 
   .genre-title{
-    color: rgb(134, 21, 183);
+    color: white;
     font-size: 1.9rem;
-    text-align: center;
   }
 
   .loading {
@@ -46,7 +44,7 @@
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
-    background-color: #8415b7;
+    background-color: black;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -54,5 +52,5 @@
 }
 
 .load-more:hover {
-    background-color: #5a0e7b;
+    color: rgb(134, 21, 183);
 }

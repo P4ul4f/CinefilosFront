@@ -55,14 +55,14 @@ const Header = () => {
     <>
       <Navbar variant='dark' fixed='top' style={{ backgroundColor: 'black'}} className='custom-header'>
         <Container fluid>
-          <Navbar.Brand href='/' style={{ color: 'rgb(134, 21, 183)' }}>
-            <img src="/LOGO.png" alt="" style={{ height: '100px', width: '100px' }} />Cinefilos
+          <Navbar.Brand href='/' style={{ color: 'rgb(134, 21, 183)', fontSize:'1.6rem' }}>
+            <img src="/LOGO.png" alt="" style={{ height: '110px', width: '110px' }} />CINÉFILOS
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbarScroll' />
           <Navbar.Collapse id='navbarScroll'>
-            <Nav className='me-auto my-3 my-lg-0' style={{ maxHeight: '100px' }}>
+            <Nav className='me-auto my-3 my-lg-0' style={{ maxHeight: '100px', fontSize:'1.2rem', paddingLeft:'1.2rem', paddingBottom:'0.5rem' }}>
               <NavLink className="nav-link" to="/" style={{ marginRight: '12px' }}>Inicio</NavLink>
-              <NavLink className="nav-link" to="/lista-favoritos" style={{ marginRight: '12px' }}>Mi Lista</NavLink>
+              <NavLink className="nav-link" to="/lista-favoritos " style={{ marginRight: '12px' }}>Mi lista</NavLink>
               <NavDropdown title="Géneros" className='custom-dropdown'>
                 <NavDropdown.Item as={NavLink} to="/animadas" className='custom-item-dropdown'>Animadas</NavDropdown.Item>
                 <NavDropdown.Item as={NavLink} to="/ciencia-ficcion" className='custom-item-dropdown'>Ciencia Ficción</NavDropdown.Item>
@@ -73,7 +73,7 @@ const Header = () => {
                 <NavDropdown.Item as={NavLink} to="/terror" className='custom-item-dropdown'>Terror</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <div className="d-flex align-items-center" style={{ gap: '30px' }}>
+            <div className="d-flex align-items-center" style={{ gap: '30px', paddingRight:'20px' }}>
               <SearchBar/>
               {loggedInUser ? (
                 <FontAwesomeIcon

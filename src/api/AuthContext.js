@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
-    console.log('Token almacenado en localStorage:', token);
   
     if (token && userId) {
       const decodedToken = decodeToken(token);
@@ -51,6 +50,24 @@ export const AuthProvider = ({ children }) => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    let logoutTimer;
+
+    if (loggedInUser && token) {
+      // Iniciar un temporizador de 30 minutos (30 * 60 * 1000 milisegundos)
+      logoutTimer = setTimeout(() => {
+        console.log('Sesión expirada. Se cerrará la sesión automáticamente.');
+        logout();
+      }, 30 * 60 * 1000);
+    }
+
+    return () => {
+      if (logoutTimer) {
+        clearTimeout(logoutTimer);
+      }
+    };
+  }, [loggedInUser, token]);
 
   return (
     <AuthContext.Provider value={{ loggedInUser, setLoggedInUser, token, login, logout }}>

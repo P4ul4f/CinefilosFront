@@ -1,9 +1,8 @@
 .section-container {
   background-color: black;
+  background-size: cover;
   padding: 50px 0;
   margin-top: 50px;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
 }
 
 .section-icon {
@@ -13,8 +12,9 @@
 }
 
 .section-text {
-  color: white;
+  color: rgb(222, 191, 236);
   font-size: 1rem;
+  padding-top: 0.4rem;
 }
 
 .icon-item {

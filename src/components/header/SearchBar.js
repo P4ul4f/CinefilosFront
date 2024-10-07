@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import Spinner from '../spinner/Spinner';
 import './Header.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -43,9 +45,9 @@ const SearchBar = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <Button variant="outline-light" id="button-addon2" type="submit">
-            Buscar
-          </Button>
+          <Button className="search-button-header" variant="outline-light" id="button-addon2" type="submit">
+          <i className="fas fa-search search-icon"></i> {/* Ícono de lupa blanco */}
+        </Button>
         </div>
       </Form>
       {loading && <Spinner />} {/* Mostrar el spinner durante la carga */}

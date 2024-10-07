@@ -19,7 +19,6 @@ const UserLogin = ({ show, handleClose, setShowLoginMessage }) => {
         username,
         password
       });
-      console.log("Login exitoso",response.data);
       
       // Verifica que response.data contenga el userId y el token JWT
       if (response.data && response.data.jwt && response.data.userId) {
